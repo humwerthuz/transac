@@ -7,4 +7,5 @@ void db_close();
 void db_commit();
 
 test *  select_test_by_id(int);
+
 #endif
