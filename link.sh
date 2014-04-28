@@ -26,8 +26,8 @@ fi
 
 
 echo "*** Creating object code for $1..."
-cc -c $1.c -o $1.o && echo "*** Sucess!" || exit_with_error
+gcc -std=c99 -c $1.c -o $1.o && echo "*** Sucess!" || exit_with_error
 
 echo "*** Linking object code..."
-cc $NAME.o $1.o -o $1 -I /usr/include/postgresql -L /usr/lib/postgresql/9.3/lib -lecpg && \
+gcc $NAME.o $1.o -o $1 -I /usr/include/postgresql -L /usr/lib/postgresql/9.3/lib -lecpg && \
 echo "*** Executable generated!" || exit_with_error
