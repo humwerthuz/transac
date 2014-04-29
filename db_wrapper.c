@@ -17,8 +17,8 @@ int db_connect(char *db_name, char *db_user, char *db_pswd){
 	_STRING_COPY(SQL_bd_name, db_name);
 	_STRING_COPY(SQL_bd_user, db_user);
 	_STRING_COPY(SQL_bd_passwd, db_pswd);
-	//EXEC SQL CONNECT TO :SQL_bd_name USER :SQL_bd_user IDENTIFIED BY :SQL_bd_passwd;
-	EXEC SQL CONNECT TO :SQL_bd_name;
+	EXEC SQL CONNECT TO :SQL_bd_name USER :SQL_bd_user IDENTIFIED BY :SQL_bd_passwd;
+//	EXEC SQL CONNECT TO :SQL_bd_name;
 	return sqlca.sqlcode;
 }
 
@@ -57,6 +57,8 @@ test * select_test_all(){
 	EXEC SQL END DECLARE SECTION;
 
 	EXEC SQL SELECT COUNT(*) INTO :SQL_count FROM test;
+
+	if(SQL_count == 0) return NULL;
 
 	SQL_output = malloc(sizeof(test) * (SQL_count + 1));
 	SQL_output[SQL_count].SQL_CODE = 0;

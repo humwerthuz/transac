@@ -7,7 +7,9 @@ int main(){
 		printf("%s\n", "Failed to connect to database");
 		return 1;
 	}
+	
 	test * temp;
+
 	temp = select_test_by_id(1);
 	printf("Test name: %s, email: %s\n", temp->name, temp->email);
 
